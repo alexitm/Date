@@ -45,24 +45,38 @@ public class Date {
 		this._day = _day;
 	}
 
-	
+
 	//Comparacion de los atributos de la clase Date
-	public void isSameYear (int _year){
-		if (get_year() == _year){
-			
+	boolean isSameYear (Date anio){
+		boolean anioIgual = false;
+		if (_year == anio.get_year()){
+			anioIgual = true;			
 		}
+		return anioIgual;
 	}
 		
-	public void isSameMonth (){
-		
+	boolean isSameMonth (Date mes){
+		boolean mesIgual = false;
+		if (_month == mes.get_month()){
+			mesIgual = true;			
+		}
+		return mesIgual;
 	}
 		
-	public void isSameDay (){
-		
+	boolean isSameDay (Date dia){
+		boolean diaIgual = false;
+		if (_day == dia.get_day()){
+			diaIgual = true;			
+		}
+		return diaIgual;
 	}
 		
-	public void isSame (){
-		
+	boolean isSame (Date fecha){
+		boolean fechaIgual = false;
+		if (_day == fecha.get_day() && _month == fecha.get_month() && _year == fecha.get_year()){
+			fechaIgual = true;			
+		}
+		return fechaIgual;
 	}
 	
 	
@@ -153,13 +167,22 @@ public class Date {
 	public static void main(String[] args) {
 		
 		Date fecha1 = new Date (29,2,2016);
-		//Date fecha2 = new Date (29,2,2016);
+		Date fecha2 = new Date (29,2,2014);
 		
 		System.out.println(fecha1);
 		System.out.println("El nombre del mes es: " +fecha1.monthName(fecha1.get_month()));
 		System.out.println("El anio es bisiesto: " +fecha1.isLeapYear());
 		System.out.println("El mes es correcto: " +fecha1.dayRight());
-
+		System.out.println("______________________________");
+		System.out.println(fecha2);		
+		System.out.println("El nombre del mes es: " +fecha2.monthName(fecha2.get_month()));
+		System.out.println("El anio es bisiesto: " +fecha2.isLeapYear());
+		System.out.println("El mes es correcto: " +fecha2.dayRight());
+		System.out.println("______________________________");
+		System.out.println("El dia de fecha1 y fecha2 son iguales: " +fecha1.isSameDay(fecha2));
+		System.out.println("El mes de fecha1 y fecha2 son iguales: " +fecha1.isSameMonth(fecha2));
+		System.out.println("El anio de fecha1 y fecha2 son iguales: " +fecha1.isSameYear(fecha2));
+		System.out.println("El dia, mes y anio de fecha1 y fecha2 son iguales: " +fecha1.isSame(fecha2));
 	}
 
 }
