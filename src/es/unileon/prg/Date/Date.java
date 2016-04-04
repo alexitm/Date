@@ -91,31 +91,6 @@ public class Date {
 	}
 	
 	
-	//Metodo que comprueba si el dia introducido es correcto
-	public boolean dayRight (){
-		boolean correcto = false;
-		
-		if (get_month() == 2 && isLeapYear() == true && get_day() >= 1 && get_day() <= 29 ){
-			correcto = true;
-		}
-		
-		if ((get_month() == 1 || get_month() == 3 || get_month() == 5 || get_month() == 7 
-				|| get_month() == 8 || get_month() == 10 || get_month() == 12) 
-				&& get_day() >= 1 && get_day() <= 31){
-			
-			correcto = true;
-		}
-		
-		if ((get_month() == 4 || get_month() == 6 || get_month() == 9 
-				|| get_month() == 11) && get_day() >= 1 && get_day() <= 30){
-			
-			correcto = true;
-		}
-		
-		return correcto;
-		
-	}
-	
 	//Metodo que devuelve el nombre del mes, en funcion del numero de mes pasado
 	public String monthName (int _month) {
 		
@@ -153,6 +128,101 @@ public class Date {
 		return nombreMes;
 	}
 	
+	//Metodo que comprueba si el dia introducido es correcto
+	public boolean dayRight (){
+		boolean correcto = false;
+			
+		if (get_month() == 2 && isLeapYear() == true && get_day() >= 1 && get_day() <= 29 ){
+			correcto = true;
+		}
+		
+		if ((get_month() == 1 || get_month() == 3 || get_month() == 5 || get_month() == 7 
+				|| get_month() == 8 || get_month() == 10 || get_month() == 12) 
+				&& get_day() >= 1 && get_day() <= 31){
+				
+			correcto = true;
+		}
+			
+		if ((get_month() == 4 || get_month() == 6 || get_month() == 9 
+				|| get_month() == 11) && get_day() >= 1 && get_day() <= 30){
+			
+			correcto = true;
+		}
+			
+		return correcto;
+			
+	}
+	
+	//Metodo que devuelve la estacion del anio
+	public String season (Date fecha) {
+		String estacion = "";
+		
+		switch (_month){
+			case 1: estacion = "Invierno"; 
+			break;
+			case 2: estacion = "Invierno"; 
+			break;
+			case 3: estacion = "Primavera";
+				if (_day < 21){
+					estacion = "Invierno"; 
+				}
+			break;
+			case 4: estacion = "Primavera"; 
+			break;
+			case 5: estacion = "Primavera"; 
+			break;
+			case 6: estacion = "Verano"; 
+				if (_day < 21){
+					estacion = "Primavera"; 
+				}
+			break;
+			case 7: estacion = "Verano"; 
+			break;
+			case 8: estacion = "Verano"; 
+			break;
+			case 9: estacion = "Otonio";
+				if (_day < 23){
+					estacion = "Verano"; 
+				}
+			break;
+			case 10: estacion = "Otonio"; 
+			break;
+			case 11: estacion = "Otonio"; 
+			break;
+			case 12: estacion = "Invierno";
+				if (_day < 21){
+					estacion = "Otonio"; 
+				}
+			break;
+			default: estacion = "Mes invalido";
+			break; 
+		}
+		
+		return estacion;
+	}
+	
+	
+	//Metodo que devuelve los meses que quedan para que finalice el anio
+	public int remainingMonths (Date fecha){
+		int i, cont = 0;
+		for (i = _month; i<12; i++){
+			cont ++;
+		}
+		return cont;
+	}
+	
+	
+	//Metodo que devuelve los dias que quedan para que finalice el mes
+		public int remainingDays (Date fecha){
+			int i, cont = 0;
+			for (i = _day; i<30; i++){
+				cont ++;
+			}
+			return cont;
+		}
+	
+	
+	//Metodo que imprime la fecha pasada como objeto
 	public String toString() {
 		StringBuffer salida = new StringBuffer();
 		
@@ -167,18 +237,24 @@ public class Date {
 	public static void main(String[] args) {
 		
 		Date fecha1 = new Date (29,2,2016);
-		Date fecha2 = new Date (29,2,2014);
+		Date fecha2 = new Date (23,9,2014);
 		
 		System.out.println(fecha1);
 		System.out.println("El nombre del mes es: " +fecha1.monthName(fecha1.get_month()));
 		System.out.println("El anio es bisiesto: " +fecha1.isLeapYear());
-		System.out.println("El mes es correcto: " +fecha1.dayRight());
-		System.out.println("______________________________");
+		System.out.println("El dia es correcto: " +fecha1.dayRight());
+		System.out.println("La estacion de fecha1 es: " +fecha1.season(fecha1));
+		System.out.println("Quedan " +fecha1.remainingMonths(fecha1)+ " meses para terminar el anio");
+		System.out.println("Quedan " +fecha1.remainingDays(fecha1)+ " dias para terminar el mes");
+		System.out.println("_____________________________________");
 		System.out.println(fecha2);		
 		System.out.println("El nombre del mes es: " +fecha2.monthName(fecha2.get_month()));
 		System.out.println("El anio es bisiesto: " +fecha2.isLeapYear());
-		System.out.println("El mes es correcto: " +fecha2.dayRight());
-		System.out.println("______________________________");
+		System.out.println("El dia es correcto: " +fecha2.dayRight());
+		System.out.println("La estacion de fecha1 es: " +fecha2.season(fecha2));
+		System.out.println("Quedan " +fecha2.remainingMonths(fecha2)+ " meses para terminar el anio");
+		System.out.println("Quedan " +fecha2.remainingDays(fecha2)+ " dias para terminar el mes");
+		System.out.println("_____________________________________________________");
 		System.out.println("El dia de fecha1 y fecha2 son iguales: " +fecha1.isSameDay(fecha2));
 		System.out.println("El mes de fecha1 y fecha2 son iguales: " +fecha1.isSameMonth(fecha2));
 		System.out.println("El anio de fecha1 y fecha2 son iguales: " +fecha1.isSameYear(fecha2));
