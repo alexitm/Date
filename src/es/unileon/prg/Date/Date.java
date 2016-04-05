@@ -213,13 +213,99 @@ public class Date {
 	
 	
 	//Metodo que devuelve los dias que quedan para que finalice el mes
-		public int remainingDays (Date fecha){
-			int i, cont = 0;
-			for (i = _day; i<30; i++){
-				cont ++;
-			}
-			return cont;
+	public int remainingDays (Date fecha){
+		int i, cont = 0;
+		int mes = 0;
+		
+		switch (_month){
+			case 1: mes = 31;
+			break;
+			case 2: if (_year % 4 == 0){
+						mes = 29;
+					}
+					else {
+						mes = 28;
+					}
+			break;
+			case 3: mes = 31;
+			break;
+			case 4: mes = 30;
+			break;
+			case 5: mes = 31;
+			break;
+			case 6: mes = 30;
+			break;
+			case 7: mes = 31;
+			break;
+			case 8: mes = 31;
+			break;
+			case 9: mes = 30;
+			break;
+			case 10: mes = 31;
+			break;
+			case 11: mes = 30;
+			break;
+			case 12: mes = 31;
+			break;	
 		}
+ 
+		for (i = _day; i<mes; i++){
+			cont ++;
+		}
+		if (_day > mes){
+			System.out.println("Dia no valido para este mes");
+		}
+		return cont;
+	}
+	
+		
+	//Metodo que devuelve los meses con el mismo numero de dias que el mes de la fecha
+	public int monthsSameNumberDays (Date fecha){
+		
+		int mes = 0, cont = 0;
+		
+
+		switch (_month){
+			case 1: mes = 31;
+			break;
+			case 2: if (_year % 4 == 0){
+						mes = 29;
+					}
+					else {
+						mes = 28;
+					}
+			break;
+			case 3: mes = 31;
+			break;
+			case 4: mes = 30;
+			break;
+			case 5: mes = 31;
+			break;
+			case 6: mes = 30;
+			break;
+			case 7: mes = 31;
+			break;
+			case 8: mes = 31;
+			break;
+			case 9: mes = 30;
+			break;
+			case 10: mes = 31;
+			break;
+			case 11: mes = 30;
+			break;
+			case 12: mes = 31;
+			break;	
+		}
+
+		if (mes == 31){
+			cont = 7;
+		}
+		else if (mes == 30){
+			cont = 4;
+		}
+		
+	return cont;
+	}
 	
 	
 	//Metodo que imprime la fecha pasada como objeto
@@ -231,34 +317,6 @@ public class Date {
 		salida.append("anio: "+_year);
 		
 		return salida.toString();
-	}
-	
-	
-	public static void main(String[] args) {
-		
-		Date fecha1 = new Date (29,2,2016);
-		Date fecha2 = new Date (23,9,2014);
-		
-		System.out.println(fecha1);
-		System.out.println("El nombre del mes es: " +fecha1.monthName(fecha1.get_month()));
-		System.out.println("El anio es bisiesto: " +fecha1.isLeapYear());
-		System.out.println("El dia es correcto: " +fecha1.dayRight());
-		System.out.println("La estacion de fecha1 es: " +fecha1.season(fecha1));
-		System.out.println("Quedan " +fecha1.remainingMonths(fecha1)+ " meses para terminar el anio");
-		System.out.println("Quedan " +fecha1.remainingDays(fecha1)+ " dias para terminar el mes");
-		System.out.println("_____________________________________");
-		System.out.println(fecha2);		
-		System.out.println("El nombre del mes es: " +fecha2.monthName(fecha2.get_month()));
-		System.out.println("El anio es bisiesto: " +fecha2.isLeapYear());
-		System.out.println("El dia es correcto: " +fecha2.dayRight());
-		System.out.println("La estacion de fecha1 es: " +fecha2.season(fecha2));
-		System.out.println("Quedan " +fecha2.remainingMonths(fecha2)+ " meses para terminar el anio");
-		System.out.println("Quedan " +fecha2.remainingDays(fecha2)+ " dias para terminar el mes");
-		System.out.println("_____________________________________________________");
-		System.out.println("El dia de fecha1 y fecha2 son iguales: " +fecha1.isSameDay(fecha2));
-		System.out.println("El mes de fecha1 y fecha2 son iguales: " +fecha1.isSameMonth(fecha2));
-		System.out.println("El anio de fecha1 y fecha2 son iguales: " +fecha1.isSameYear(fecha2));
-		System.out.println("El dia, mes y anio de fecha1 y fecha2 son iguales: " +fecha1.isSame(fecha2));
 	}
 
 }
