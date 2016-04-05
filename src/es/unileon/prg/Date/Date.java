@@ -264,7 +264,6 @@ public class Date {
 		
 		int mes = 0, cont = 0;
 		
-
 		switch (_month){
 			case 1: mes = 31;
 			break;
@@ -308,6 +307,84 @@ public class Date {
 	}
 	
 	
+	//Metodo que devuelve el numero de dias desde la fecha hasta el inicio de ese anio
+	public int daysSinceDate (Date fecha) {
+		int mes = 0, cont = 0;
+		
+		for (int i=_month; i>=1; i--){
+			
+			switch (i){
+				case 1: mes = 31;
+				break;
+				case 2: mes = 28;
+				break;
+				case 3: mes = 31;
+				break;
+				case 4: mes = 30;
+				break;
+				case 5: mes = 31;
+				break;
+				case 6: mes = 30;
+				break;
+				case 7: mes = 31;
+				break;
+				case 8: mes = 31;
+				break;
+				case 9: mes = 30;
+				break;
+				case 10: mes = 31;
+				break;
+				case 11: mes = 30;
+				break;
+				case 12: mes = 31;
+				break;	
+			}
+			cont = cont + mes;
+		}
+		return cont;
+	}
+	
+	
+	//Metodo que calcula un dia aleatorio entre 1 y 31
+	public int randomDay(){
+		
+		int day = (int) (Math.random()*31+1);
+		return day;
+	}
+	
+	
+	//Metodo que calcula un mes aleatorio entre 1 y 12
+	public int randomMonth(){
+		
+		int month = (int) (Math.random()*12+1);
+		return month;
+	}
+	
+	
+	//Metodo que cuenta el numero de veces necesarias para acertar el dia y el mes de una fecha
+	public int countSameDate (Date fecha){
+		int cont = 0;
+		
+		while (_day != randomDay() || _month != randomMonth()){
+			cont++;
+		}		
+		
+		return cont;
+	}
+	
+	
+	//Metodo que cuenta el numero de veces necesarias para acertar el dia y el mes de una fecha
+		public int countSameDate2 (Date fecha){
+			int cont = 0;
+			do {
+				cont++;
+			}
+			while (_day != randomDay() || _month != randomMonth());	
+			
+			return cont;
+		}
+	
+		
 	//Metodo que imprime la fecha pasada como objeto
 	public String toString() {
 		StringBuffer salida = new StringBuffer();

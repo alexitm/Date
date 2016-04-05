@@ -15,6 +15,9 @@ public static void main(String[] args) {
 		System.out.println("Quedan " +fecha1.remainingMonths(fecha1)+ " meses para terminar el anio");
 		System.out.println("Quedan " +fecha1.remainingDays(fecha1)+ " dias para terminar el mes");
 		System.out.println(fecha1.monthsSameNumberDays(fecha1)+ " meses con el mismo numero de dias");
+		System.out.println(fecha1.daysSinceDate(fecha1)+ " dias desde que comenzo el anio");
+		System.out.println(fecha1.countSameDate(fecha1)+ " intentos para acertar el dia y el mes generando aleatorios");
+		System.out.println(fecha1.countSameDate2(fecha1)+ " intentos para acertar el dia y el mes generando aleatorios");
 		System.out.println("_____________________________________");
 		System.out.println(fecha2);		
 		System.out.println("El nombre del mes es: " +fecha2.monthName(fecha2.get_month()));
@@ -24,6 +27,9 @@ public static void main(String[] args) {
 		System.out.println("Quedan " +fecha2.remainingMonths(fecha2)+ " meses para terminar el anio");
 		System.out.println("Quedan " +fecha2.remainingDays(fecha2)+ " dias para terminar el mes");
 		System.out.println(fecha2.monthsSameNumberDays(fecha2)+ " meses con el mismo numero de dias");
+		System.out.println(fecha2.daysSinceDate(fecha2)+ " dias desde que comenzo el anio");
+		System.out.println(fecha2.countSameDate(fecha2)+ " intentos para acertar el dia y el mes generando aleatorios");
+		System.out.println(fecha1.countSameDate2(fecha1)+ " intentos para acertar el dia y el mes generando aleatorios");
 		System.out.println("_____________________________________________________");
 		System.out.println("El dia de fecha1 y fecha2 son iguales: " +fecha1.isSameDay(fecha2));
 		System.out.println("El mes de fecha1 y fecha2 son iguales: " +fecha1.isSameMonth(fecha2));
