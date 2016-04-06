@@ -1,5 +1,8 @@
 package es.unileon.prg.Date;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class Date {
 
 	//Declaracion de las variables del constructor Date
@@ -132,21 +135,44 @@ public class Date {
 	public boolean dayRight (){
 		boolean correcto = false;
 			
-		if (get_month() == 2 && isLeapYear() == true && get_day() >= 1 && get_day() <= 29 ){
-			correcto = true;
-		}
-		
-		if ((get_month() == 1 || get_month() == 3 || get_month() == 5 || get_month() == 7 
-				|| get_month() == 8 || get_month() == 10 || get_month() == 12) 
-				&& get_day() >= 1 && get_day() <= 31){
-				
-			correcto = true;
-		}
+		switch (_month){
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12: if (get_day() >= 1 && get_day() <= 31){
+				correcto = true;
+			}
+			else {
+				correcto = false;
+			}
+			break;
+			case 4:
+			case 6:
+			case 9:
+			case 11: if (get_day() >= 1 && get_day() <= 30){
+				correcto = true;
+			}
+			else {
+				correcto = false;
+			}
+			break;
 			
-		if ((get_month() == 4 || get_month() == 6 || get_month() == 9 
-				|| get_month() == 11) && get_day() >= 1 && get_day() <= 30){
+			case 2: if (get_year() % 4 == 0){
+				if (get_day() >= 1 && get_day() <= 29){
+					correcto = true;
+				}
+			}
+			else if (get_day() >= 1 && get_day() <= 28){
+				correcto = true;
+			}
+			else{
+				correcto = false;
+			}
+			break;
 			
-			correcto = true;
 		}
 			
 		return correcto;
@@ -203,12 +229,15 @@ public class Date {
 	
 	
 	//Metodo que devuelve los meses que quedan para que finalice el anio
-	public int remainingMonths (Date fecha){
-		int i, cont = 0;
-		for (i = _month; i<12; i++){
-			cont ++;
+	public String remainingMonths (Date fecha){
+		int i;
+		String mes = "", nombreMes = "";
+		
+		for (i = _month+1; i<=12; i++){
+			nombreMes = fecha.monthName(i);
+			mes = mes.concat(nombreMes) + " ";
 		}
-		return cont;
+		return mes;
 	}
 	
 	
@@ -262,45 +291,33 @@ public class Date {
 	//Metodo que devuelve los meses con el mismo numero de dias que el mes de la fecha
 	public int monthsSameNumberDays (Date fecha){
 		
-		int mes = 0, cont = 0;
+		int cont = 0;
 		
 		switch (_month){
-			case 1: mes = 31;
+			case 1: cont = 7;
 			break;
-			case 2: if (_year % 4 == 0){
-						mes = 29;
-					}
-					else {
-						mes = 28;
-					}
+			case 2:
 			break;
-			case 3: mes = 31;
+			case 3: cont = 7;
 			break;
-			case 4: mes = 30;
+			case 4: cont = 4;
 			break;
-			case 5: mes = 31;
+			case 5: cont = 7;
 			break;
-			case 6: mes = 30;
+			case 6: cont = 4;
 			break;
-			case 7: mes = 31;
+			case 7: cont = 7;
 			break;
-			case 8: mes = 31;
+			case 8: cont = 7;
 			break;
-			case 9: mes = 30;
+			case 9: cont = 4;
 			break;
-			case 10: mes = 31;
+			case 10: cont = 7;
 			break;
-			case 11: mes = 30;
+			case 11: cont = 4;
 			break;
-			case 12: mes = 31;
+			case 12: cont = 7;
 			break;	
-		}
-
-		if (mes == 31){
-			cont = 7;
-		}
-		else if (mes == 30){
-			cont = 4;
 		}
 		
 	return cont;
@@ -374,16 +391,45 @@ public class Date {
 	
 	
 	//Metodo que cuenta el numero de veces necesarias para acertar el dia y el mes de una fecha
-		public int countSameDate2 (Date fecha){
-			int cont = 0;
-			do {
-				cont++;
-			}
-			while (_day != randomDay() || _month != randomMonth());	
-			
-			return cont;
+	public int countSameDate2 (Date fecha){
+		int cont = 0;
+		do {
+			cont++;
 		}
+		while (_day != randomDay() || _month != randomMonth());	
+		
+		return cont;
+	}
+		
+		
+	//Metodo que devuelve el dia de la semana del mes correspondiente 
+	public int dayNumberName(Date fecha){
+		GregorianCalendar cal = new GregorianCalendar();
+		
+		return cal.get(Calendar.DAY_OF_WEEK);		
+	}
 	
+	public String dayName (Date fecha){
+		String nombreDia = "";
+		
+		switch (dayNumberName(fecha)){
+			case 1: nombreDia = "Domingo";
+			break;
+			case 2: nombreDia = "Lunes";
+			break;
+			case 3: nombreDia = "Martes";
+			break;
+			case 4: nombreDia = "Miercoles";
+			break;
+			case 5: nombreDia = "Jueves";
+			break;
+			case 6: nombreDia = "Viernes";
+			break;
+			case 7: nombreDia = "Sabado";
+			break;
+		}
+		return nombreDia;
+	}
 		
 	//Metodo que imprime la fecha pasada como objeto
 	public String toString() {

@@ -4,7 +4,7 @@ public class Main {
 
 public static void main(String[] args) {
 		
-		Date fecha1 = new Date (29,4,2015);
+		Date fecha1 = new Date (21,4,2015);
 		Date fecha2 = new Date (29,2,2016);
 		
 		System.out.println(fecha1);
@@ -12,12 +12,13 @@ public static void main(String[] args) {
 		System.out.println("El anio es bisiesto: " +fecha1.isLeapYear());
 		System.out.println("El dia es correcto: " +fecha1.dayRight());
 		System.out.println("La estacion de fecha1 es: " +fecha1.season(fecha1));
-		System.out.println("Quedan " +fecha1.remainingMonths(fecha1)+ " meses para terminar el anio");
+		System.out.println("Quedan " +fecha1.remainingMonths(fecha1)+ "meses para terminar el anio");
 		System.out.println("Quedan " +fecha1.remainingDays(fecha1)+ " dias para terminar el mes");
 		System.out.println(fecha1.monthsSameNumberDays(fecha1)+ " meses con el mismo numero de dias");
 		System.out.println(fecha1.daysSinceDate(fecha1)+ " dias desde que comenzo el anio");
 		System.out.println(fecha1.countSameDate(fecha1)+ " intentos para acertar el dia y el mes generando aleatorios");
 		System.out.println(fecha1.countSameDate2(fecha1)+ " intentos para acertar el dia y el mes generando aleatorios");
+		System.out.println(fecha1.dayName(fecha1)+ " es el dia conrrespondiente al mes");
 		System.out.println("_____________________________________");
 		System.out.println(fecha2);		
 		System.out.println("El nombre del mes es: " +fecha2.monthName(fecha2.get_month()));
@@ -30,6 +31,7 @@ public static void main(String[] args) {
 		System.out.println(fecha2.daysSinceDate(fecha2)+ " dias desde que comenzo el anio");
 		System.out.println(fecha2.countSameDate(fecha2)+ " intentos para acertar el dia y el mes generando aleatorios");
 		System.out.println(fecha1.countSameDate2(fecha1)+ " intentos para acertar el dia y el mes generando aleatorios");
+		System.out.println(fecha2.dayName(fecha2)+ " es el dia conrrespondiente al mes");
 		System.out.println("_____________________________________________________");
 		System.out.println("El dia de fecha1 y fecha2 son iguales: " +fecha1.isSameDay(fecha2));
 		System.out.println("El mes de fecha1 y fecha2 son iguales: " +fecha1.isSameMonth(fecha2));
