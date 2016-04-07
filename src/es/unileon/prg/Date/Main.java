@@ -4,8 +4,8 @@ public class Main {
 
 public static void main(String[] args) throws DateException {
 		
-		Date fecha1 = new Date (3,2,2016);
-		Date fecha2 = new Date (31,12,2015);
+		Date fecha1 = new Date (21,7,2016);
+		Date fecha2 = new Date (29,12,2016);
 		
 		System.out.println(fecha1);
 		System.out.println("El nombre del mes es: " +fecha1.monthName(fecha1.get_month()));
@@ -18,7 +18,7 @@ public static void main(String[] args) throws DateException {
 		System.out.println(fecha1.daysSinceDate(fecha1)+ " dias desde que comenzo el anio");
 		System.out.println(fecha1.countSameDate(fecha1)+ " intentos para acertar el dia y el mes generando aleatorios");
 		System.out.println(fecha1.countSameDate2(fecha1)+ " intentos para acertar el dia y el mes generando aleatorios");
-		System.out.println(fecha1.dayName(fecha1)+ " es el dia conrrespondiente al mes");
+		System.out.println(fecha1.dayName(fecha1)+ " es el dia correspondiente al mes");
 		System.out.println("______________________________________________________________");
 		System.out.println(fecha2);		
 		System.out.println("El nombre del mes es: " +fecha2.monthName(fecha2.get_month()));
