@@ -108,7 +108,6 @@ public class Date {
 		return bisiesto;
 	}
 	
-	
 	//Metodo que devuelve el nombre del mes, en funcion del numero de mes pasado
 	public String monthName (int _month) {
 		
@@ -287,9 +286,6 @@ public class Date {
 		for (i = _day; i<mes; i++){
 			cont ++;
 		}
-		if (_day > mes){
-			System.out.println("Dia no valido para este mes");
-		}
 		return cont;
 	}
 	
@@ -348,6 +344,7 @@ public class Date {
 			}
 			cont = cont + mes;
 		}
+		cont = cont - remainingDays(fecha);
 		return cont;
 	}
 	
