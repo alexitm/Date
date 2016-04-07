@@ -11,15 +11,21 @@ public class Date {
 	private int _month;
 		
 	private int _day;
-
 	
-	//Declaracion del consructor Date
-	public Date (int day, int month, int year) {
-			
-		_year = year;
-		_month = month;
+	
+	//Declaracion constructor Date con enteros
+	public Date (int day, int month, int year) throws DateException{
+
 		_day = day;
-		
+		_month = month;
+		_year = year;
+	
+		if (_day < 1){
+			throw new DateException("Introduzca un dia entre 1 y 30, introdujo: " +_month);
+		}
+		if (_month < 1 || _month > 12){
+			throw new DateException("Introduzca un mes entre 1 y 12, introdujo: " +_month);
+		}
 	}
 	
 	
@@ -47,12 +53,12 @@ public class Date {
 	public void set_day(int _day) {
 		this._day = _day;
 	}
-
+		
 
 	//Comparacion de los atributos de la clase Date
 	boolean isSameYear (Date anio){
 		boolean anioIgual = false;
-		if (_year == anio.get_year()){
+		if (this._year == anio.get_year()){
 			anioIgual = true;			
 		}
 		return anioIgual;
@@ -60,7 +66,7 @@ public class Date {
 		
 	boolean isSameMonth (Date mes){
 		boolean mesIgual = false;
-		if (_month == mes.get_month()){
+		if (this._month == mes.get_month()){
 			mesIgual = true;			
 		}
 		return mesIgual;
@@ -68,7 +74,7 @@ public class Date {
 		
 	boolean isSameDay (Date dia){
 		boolean diaIgual = false;
-		if (_day == dia.get_day()){
+		if (this._day == dia.get_day()){
 			diaIgual = true;			
 		}
 		return diaIgual;
@@ -76,7 +82,7 @@ public class Date {
 		
 	boolean isSame (Date fecha){
 		boolean fechaIgual = false;
-		if (_day == fecha.get_day() && _month == fecha.get_month() && _year == fecha.get_year()){
+		if (this._day == fecha.get_day() && this._month == fecha.get_month() && this._year == fecha.get_year()){
 			fechaIgual = true;			
 		}
 		return fechaIgual;
@@ -230,9 +236,12 @@ public class Date {
 	
 	//Metodo que devuelve los meses que quedan para que finalice el anio
 	public String remainingMonths (Date fecha){
-		int i;
+		int i, j;
 		String mes = "", nombreMes = "";
 		
+		if (_month == 12){
+			mes = "0";
+		}
 		for (i = _month+1; i<=12; i++){
 			nombreMes = fecha.monthName(i);
 			mes = mes.concat(nombreMes) + " ";
@@ -247,7 +256,18 @@ public class Date {
 		int mes = 0;
 		
 		switch (_month){
-			case 1: mes = 31;
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12: mes = 31;
+			break;
+			case 4:
+			case 6:
+			case 9:
+			case 11: mes = 30;
 			break;
 			case 2: if (_year % 4 == 0){
 						mes = 29;
@@ -256,26 +276,7 @@ public class Date {
 						mes = 28;
 					}
 			break;
-			case 3: mes = 31;
-			break;
-			case 4: mes = 30;
-			break;
-			case 5: mes = 31;
-			break;
-			case 6: mes = 30;
-			break;
-			case 7: mes = 31;
-			break;
-			case 8: mes = 31;
-			break;
-			case 9: mes = 30;
-			break;
-			case 10: mes = 31;
-			break;
-			case 11: mes = 30;
-			break;
-			case 12: mes = 31;
-			break;	
+					
 		}
  
 		for (i = _day; i<mes; i++){
@@ -294,30 +295,22 @@ public class Date {
 		int cont = 0;
 		
 		switch (_month){
-			case 1: cont = 7;
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12: cont = 7;
+			break;
+			case 4:
+			case 6:
+			case 9:
+			case 11: cont = 4;
 			break;
 			case 2:
 			break;
-			case 3: cont = 7;
-			break;
-			case 4: cont = 4;
-			break;
-			case 5: cont = 7;
-			break;
-			case 6: cont = 4;
-			break;
-			case 7: cont = 7;
-			break;
-			case 8: cont = 7;
-			break;
-			case 9: cont = 4;
-			break;
-			case 10: cont = 7;
-			break;
-			case 11: cont = 4;
-			break;
-			case 12: cont = 7;
-			break;	
+				
 		}
 		
 	return cont;
@@ -331,30 +324,22 @@ public class Date {
 		for (int i=_month; i>=1; i--){
 			
 			switch (i){
-				case 1: mes = 31;
+				case 1:
+				case 3:
+				case 5:
+				case 7:
+				case 8:
+				case 10:
+				case 12: mes = 31;
+				break;
+				case 4:
+				case 6:
+				case 9:
+				case 11: mes = 30;
 				break;
 				case 2: mes = 28;
 				break;
-				case 3: mes = 31;
-				break;
-				case 4: mes = 30;
-				break;
-				case 5: mes = 31;
-				break;
-				case 6: mes = 30;
-				break;
-				case 7: mes = 31;
-				break;
-				case 8: mes = 31;
-				break;
-				case 9: mes = 30;
-				break;
-				case 10: mes = 31;
-				break;
-				case 11: mes = 30;
-				break;
-				case 12: mes = 31;
-				break;	
+					
 			}
 			cont = cont + mes;
 		}

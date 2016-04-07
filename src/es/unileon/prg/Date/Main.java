@@ -2,10 +2,10 @@ package es.unileon.prg.Date;
 
 public class Main {
 
-public static void main(String[] args) {
+public static void main(String[] args) throws DateException {
 		
-		Date fecha1 = new Date (21,4,2015);
-		Date fecha2 = new Date (29,2,2016);
+		Date fecha1 = new Date (1,1,2016);
+		Date fecha2 = new Date (31,12,2016);
 		
 		System.out.println(fecha1);
 		System.out.println("El nombre del mes es: " +fecha1.monthName(fecha1.get_month()));
