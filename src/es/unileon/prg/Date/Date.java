@@ -19,12 +19,21 @@ public class Date {
 		_day = day;
 		_month = month;
 		_year = year;
-	
+			
 		if (_day < 1){
-			throw new DateException("Introduzca un dia entre 1 y 30, introdujo: " +_month);
+			throw new DateException("Introduzca un dia entre 1 y 30, introdujo: " +_day);
 		}
 		if (_month < 1 || _month > 12){
 			throw new DateException("Introduzca un mes entre 1 y 12, introdujo: " +_month);
+		}
+		if ((_month == 2 && isLeapYear() == true) && _day > 29){
+			throw new DateException("Introduzca un dia entre 1 y 29, en " +_year+ " febrero es bisisesto");
+		}
+		else if ((_month == 2 && isLeapYear() == false) && _day > 28){
+			throw new DateException("Introduzca un dia entre 1 y 28, en " +_year+ " febrero no es bisisesto");
+		}
+		if (_year <= 0){
+			throw new DateException("Introduzca un anio superior a 0, introdujo " +_year);
 		}
 	}
 	
@@ -190,8 +199,7 @@ public class Date {
 		String estacion = "";
 		
 		switch (_month){
-			case 1: estacion = "Invierno"; 
-			break;
+			case 1:
 			case 2: estacion = "Invierno"; 
 			break;
 			case 3: estacion = "Primavera";
@@ -199,8 +207,7 @@ public class Date {
 					estacion = "Invierno"; 
 				}
 			break;
-			case 4: estacion = "Primavera"; 
-			break;
+			case 4:
 			case 5: estacion = "Primavera"; 
 			break;
 			case 6: estacion = "Verano"; 
@@ -208,8 +215,7 @@ public class Date {
 					estacion = "Primavera"; 
 				}
 			break;
-			case 7: estacion = "Verano"; 
-			break;
+			case 7:
 			case 8: estacion = "Verano"; 
 			break;
 			case 9: estacion = "Otonio";
@@ -217,8 +223,7 @@ public class Date {
 					estacion = "Verano"; 
 				}
 			break;
-			case 10: estacion = "Otonio"; 
-			break;
+			case 10:
 			case 11: estacion = "Otonio"; 
 			break;
 			case 12: estacion = "Invierno";
@@ -419,11 +424,9 @@ public class Date {
 	//Metodo que imprime la fecha pasada como objeto
 	public String toString() {
 		StringBuffer salida = new StringBuffer();
-		
-		salida.append("Dia: "+_day+", ");
-		salida.append("mes: "+_month+" ");
-		salida.append("anio: "+_year);
-		
+
+		salida.append("Fecha: " +_day+ "-" +_month+ "-" +_year); 
+
 		return salida.toString();
 	}
 
