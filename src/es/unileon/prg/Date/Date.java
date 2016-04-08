@@ -23,15 +23,28 @@ public class Date {
 		if (_day < 1){
 			throw new DateException("Introduzca un dia entre 1 y 30, introdujo: " +_day);
 		}
-		if (_month < 1 || _month > 12){
-			throw new DateException("Introduzca un mes entre 1 y 12, introdujo: " +_month);
+		
+		else if ((_month == 1 || _month == 3 || _month == 5 ||  _month == 7 || 
+				_month == 8 || _month == 10 || _month == 12) && _day > 31){
+			throw new DateException("Introduzca un dia entre 1 y 31, introdujo: " +_day);
+		} 
+		
+		else if ((_month == 4 || _month == 6 || _month == 9 ||  _month == 11) && _day > 30){
+			throw new DateException("Introduzca un dia entre 1 y 30, introdujo: " +_day);
 		}
+		
 		if ((_month == 2 && isLeapYear() == true) && _day > 29){
 			throw new DateException("Introduzca un dia entre 1 y 29, en " +_year+ " febrero es bisisesto");
 		}
+		
 		else if ((_month == 2 && isLeapYear() == false) && _day > 28){
 			throw new DateException("Introduzca un dia entre 1 y 28, en " +_year+ " febrero no es bisisesto");
 		}
+		
+		if (_month < 1 || _month > 12){
+			throw new DateException("Introduzca un mes entre 1 y 12, introdujo: " +_month);
+		}
+		
 		if (_year <= 0){
 			throw new DateException("Introduzca un anio superior a 0, introdujo " +_year);
 		}
@@ -43,7 +56,11 @@ public class Date {
 		return _year;
 	}
 
-	public void set_year(int _year) {
+	public void set_year(int _year) throws DateException {
+		if (_year <= 0){
+			throw new DateException("Introduzca un anio superior a 0, introdujo " +_year);
+		}
+		
 		this._year = _year;
 	}
 
@@ -51,7 +68,11 @@ public class Date {
 		return _month;
 	}
 
-	public void set_month(int _month) {
+	public void set_month(int _month) throws DateException {
+		if (_month < 1 || _month > 12){
+			throw new DateException("Introduzca un mes entre 1 y 12, introdujo: " +_month);
+		}
+		
 		this._month = _month;
 	}
 
@@ -59,7 +80,28 @@ public class Date {
 		return _day;
 	}
 
-	public void set_day(int _day) {
+	public void set_day(int _day) throws DateException {
+		if (_day < 1){
+			throw new DateException("Introduzca un dia entre 1 y 30, introdujo: " +_day);
+		}
+		
+		else if ((_month == 1 || _month == 3 || _month == 5 ||  _month == 7 || 
+				_month == 8 || _month == 10 || _month == 12) && _day > 31){
+			throw new DateException("Introduzca un dia entre 1 y 31, introdujo: " +_day);
+		} 
+		
+		else if ((_month == 4 || _month == 6 || _month == 9 ||  _month == 11) && _day > 30){
+			throw new DateException("Introduzca un dia entre 1 y 30, introdujo: " +_day);
+		}
+		
+		if ((_month == 2 && isLeapYear() == true) && _day > 29){
+			throw new DateException("Introduzca un dia entre 1 y 29, en " +_year+ " febrero es bisisesto");
+		}
+		
+		else if ((_month == 2 && isLeapYear() == false) && _day > 28){
+			throw new DateException("Introduzca un dia entre 1 y 28, en " +_year+ " febrero no es bisisesto");
+		}
+		
 		this._day = _day;
 	}
 		

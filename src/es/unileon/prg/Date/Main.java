@@ -6,7 +6,7 @@ public static void main(String[] args) throws DateException {
 		
 		Date fecha1 = new Date (29,2,2016);
 		Date fecha2 = new Date (31,12,2016);
-		
+
 		System.out.println(fecha1);
 		System.out.println("El nombre del mes es: " +fecha1.monthName(fecha1.get_month()));
 		System.out.println("El anio es bisiesto: " +fecha1.isLeapYear());
